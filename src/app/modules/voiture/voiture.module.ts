@@ -22,16 +22,14 @@ import {KeycloakAuthGuard} from 'keycloak-angular';
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
-    RouterModule.forChild([
-      {path: '', component: VoitureListComponent, canActivate: [KeycloakAuthGuard]},
-      {path: 'add', component: VoitureAddComponent, canActivate: [KeycloakAuthGuard]},
-      {path: 'edit/:id', component: VoitureEditComponent, canActivate: [KeycloakAuthGuard]}
-    ])
+    RouterModule
   ],
   providers: [VoitureService],
 
   exports: [
-    VoitureListComponent
+    VoitureListComponent,
+    VoitureEditComponent,
+    VoitureAddComponent
   ]
 })
 export class VoitureModule {}

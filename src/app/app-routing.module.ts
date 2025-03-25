@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {AuthGuard} from './auth.guard';
-import {VoitureAddComponent} from './modules/voiture/components/voiture-add/voiture-add.component';
-import {VoitureListComponent} from './modules/voiture/components/voiture-list/voiture-list.component';
+import { VoitureListComponent } from './modules/voiture/components/voiture-list/voiture-list.component';
+import { VoitureAddComponent } from './modules/voiture/components/voiture-add/voiture-add.component';
+import { VoitureEditComponent } from './modules/voiture/components/voiture-edit/voiture-edit.component';
 
 const routes: Routes = [
-  {
-    path: 'voitures',
-    component: VoitureListComponent,
-    canActivate: [AuthGuard]
-  },
-  { path: '', redirectTo: 'voitures', pathMatch: 'full' }
+  { path: '', redirectTo: 'voitures', pathMatch: 'full' },
+  { path: 'voitures', component: VoitureListComponent },
+  { path: 'voitures/ajouter', component: VoitureAddComponent },
+  { path: 'voitures/modifier/:id', component: VoitureEditComponent },
+  { path: '**', redirectTo: 'voitures' } // Redirection pour les routes inconnues
 ];
 
 @NgModule({

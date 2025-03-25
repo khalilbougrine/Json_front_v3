@@ -33,6 +33,13 @@ export class VoitureListComponent implements OnInit {
   ngOnInit(): void {
     this.loadAllVoitures(); // Charge toutes les données une seule fois
   }
+  navigateToAdd() {
+    this.router.navigate(['/voitures/ajouter']);
+  }
+
+  navigateToEdit(id: number) {
+    this.router.navigate(['/voitures/modifier', id]);
+  }
 
   // Charger toutes les voitures
   loadAllVoitures(): void {

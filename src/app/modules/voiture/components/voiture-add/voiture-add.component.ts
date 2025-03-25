@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { VoitureService } from '../services/voiture.service';
+import { VoitureService } from '../../services/voiture.service';
 import { Router } from '@angular/router';
-import { Voiture } from '../models/voiture';
+import { Voiture } from '../../models/voiture';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-voiture-add',
-  imports: [FormsModule],
+  standalone : false,
   templateUrl: './voiture-add.component.html',
-  standalone: true,
   styleUrls: ['./voiture-add.component.css']
 })
 export class VoitureAddComponent {

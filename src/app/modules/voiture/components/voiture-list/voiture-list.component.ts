@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { VoitureService } from '../services/voiture.service';
-import { FileService } from '../services/file.service';
-import { Voiture } from '../models/voiture';
+import { VoitureService } from '../../services/voiture.service';
+import { FileService } from '../../services/file.service';
+import { Voiture } from '../../models/voiture';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
@@ -10,9 +10,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-voiture-list',
+  standalone : false,
   templateUrl: './voiture-list.component.html',
-  standalone: true,
-  imports: [CommonModule, MatTableModule, MatPaginatorModule, FormsModule],
   styleUrls: ['./voiture-list.component.css']
 })
 export class VoitureListComponent implements OnInit {

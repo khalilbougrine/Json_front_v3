@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VoitureService } from '../services/voiture.service';
-import { Voiture } from '../models/voiture';
+import { VoitureService } from '../../services/voiture.service';
+import { Voiture } from '../../models/voiture';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-voiture-edit',
-  imports: [FormsModule],
+  standalone : false,
   templateUrl: './voiture-edit.component.html',
-  standalone: true,
   styleUrls: ['./voiture-edit.component.css']
 })
 export class VoitureEditComponent implements OnInit {

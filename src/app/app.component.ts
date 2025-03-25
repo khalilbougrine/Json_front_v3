@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
-import { RouterModule } from '@angular/router';
-import {VoitureListComponent} from './voiture-list/voiture-list.component';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import {VoitureListComponent} from './modules/voiture/components/voiture-list/voiture-list.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterModule, VoitureListComponent], // Importez RouterModule ici
+  standalone: false,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

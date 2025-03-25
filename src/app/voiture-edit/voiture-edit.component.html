@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Modifier la voiture</h2>
+  <form (ngSubmit)="updateVoiture()">
+    <div>
+      <label for="matricule">Matricule :</label>
+      <input type="text" id="matricule" [(ngModel)]="voiture.matricule" name="matricule" required>
+    </div>
+    <div>
+      <label for="marque">Marque :</label>
+      <input type="text" id="marque" [(ngModel)]="voiture.marque" name="marque" required>
+    </div>
+    <div>
+      <label for="modele">Modèle :</label>
+      <input type="text" id="modele" [(ngModel)]="voiture.modele" name="modele" required>
+    </div>
+    <div>
+      <label for="annee">Année :</label>
+      <input type="number" id="annee" [(ngModel)]="voiture.annee" name="annee" required>
+    </div>
+    <div>
+      <label for="kilometrage">Kilométrage :</label>
+      <input type="number" id="kilometrage" [(ngModel)]="voiture.kilometrage" name="kilometrage" required>
+    </div>
+    <button type="submit">Enregistrer</button>
+  </form>
+</div>

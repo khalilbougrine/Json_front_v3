@@ -7,15 +7,16 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import {KeycloakService} from 'keycloak-angular';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-voiture-list',
-  standalone : false,
+  standalone: false,
   templateUrl: './voiture-list.component.html',
   styleUrls: ['./voiture-list.component.css']
 })
 export class VoitureListComponent implements OnInit {
+  displayedColumns: string[] = []; // Colonnes à afficher dans le tableau
   isAdmin: boolean = false;
   allVoitures: Voiture[] = []; // Stocke toutes les voitures
   filteredVoitures: Voiture[] = []; // Voitures filtrées
@@ -27,15 +28,24 @@ export class VoitureListComponent implements OnInit {
   searchField: string = 'matricule'; // Champ de recherche
   searchQuery: string = ''; // Terme de recherche
 
-  // Colonnes à afficher dans le tableau
-  displayedColumns: string[] = ['matricule', 'marque', 'modele', 'annee', 'kilometrage', 'actions'];
-
-  constructor(protected keycloak : KeycloakService , private voitureService: VoitureService, private fileService: FileService, public router: Router) {}
+  constructor(protected keycloak: KeycloakService, private voitureService: VoitureService, private fileService: FileService, public router: Router) {}
 
   async ngOnInit() {
     this.isAdmin = this.keycloak.getUserRoles().includes('ADMIN');
+    this.setDisplayedColumns();
     this.loadAllVoitures();
   }
+
+  private setDisplayedColumns() {
+    // Colonnes de base
+    this.displayedColumns = ['matricule', 'marque', 'modele', 'annee'];
+
+    // Ajoute la colonne actions si admin
+    if (this.isAdmin) {
+      this.displayedColumns.push('actions');
+    }
+  }
+
   navigateToAdd() {
     if (this.isAdmin) {
       this.router.navigate(['/ajouter']);
@@ -70,10 +80,6 @@ export class VoitureListComponent implements OnInit {
     const startIndex = this.page * this.size;
     const endIndex = startIndex + this.size;
     this.currentPageData = this.filteredVoitures.slice(startIndex, endIndex);
-  }
-
-  editVoiture(id: number): void {
-    this.router.navigate(['/edit', id]); // Redirige vers la page d'édition
   }
 
   // Gérer la recherche

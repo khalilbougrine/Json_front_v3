@@ -10,6 +10,7 @@ import { VoitureEditComponent } from './components/voiture-edit/voiture-edit.com
 import { VoitureService } from './services/voiture.service';
 import {RouterModule} from '@angular/router';
 import {KeycloakAuthGuard} from 'keycloak-angular';
+import {MatIcon} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -17,13 +18,14 @@ import {KeycloakAuthGuard} from 'keycloak-angular';
     VoitureAddComponent,
     VoitureEditComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    RouterModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatTableModule,
+        MatPaginatorModule,
+        RouterModule,
+        MatIcon
+    ],
   providers: [VoitureService],
 
   exports: [

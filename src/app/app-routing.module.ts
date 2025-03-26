@@ -15,13 +15,13 @@ const routes: Routes = [
     path: 'ajouter',
     component: VoitureAddComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['admin'] }  // Uniquement pour admin
+    data: { roles: ['ADMIN'] }  // Uniquement pour admin
   },
   {
     path: 'modifier/:id',
     component: VoitureEditComponent,
     canActivate: [AuthGuard],
-    data: { roles: ['admin'] }  // Uniquement pour admin
+    data: { roles: ['ADMIN'] }  // Uniquement pour admin
   }
 ];
 

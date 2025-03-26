@@ -30,15 +30,15 @@ export class VoitureListComponent implements OnInit {
   // Colonnes à afficher dans le tableau
   displayedColumns: string[] = ['matricule', 'marque', 'modele', 'annee', 'kilometrage', 'actions'];
 
-  constructor(private keycloak : KeycloakService ,private voitureService: VoitureService, private fileService: FileService, public router: Router) {}
+  constructor(protected keycloak : KeycloakService , private voitureService: VoitureService, private fileService: FileService, public router: Router) {}
 
   async ngOnInit() {
-    this.isAdmin = await this.keycloak.isUserInRole('admin');
+    this.isAdmin = this.keycloak.getUserRoles().includes('ADMIN');
     this.loadAllVoitures();
   }
   navigateToAdd() {
     if (this.isAdmin) {
-      this.router.navigate(['/voitures/ajouter']);
+      this.router.navigate(['/ajouter']);
     }
   }
 

@@ -1,0 +1,128 @@
+/* app.component.css */
+
+:host {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --danger-color: #f72585;
+  --light-color: #f8f9fa;
+  --dark-color: #1a1a2e;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 1000;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, transparent 100%);
+  pointer-events: none; /* Permet de cliquer à travers le header sauf sur le bouton */
+}
+
+.logout-btn {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--danger-color) 0%, #d11450 100%);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(247, 37, 133, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto; /* Réactive les événements de souris */
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.logout-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #d11450 0%, var(--danger-color) 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.logout-btn:hover::before {
+  opacity: 1;
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(247, 37, 133, 0.4);
+}
+
+.logout-btn:active {
+  transform: translateY(1px);
+}
+
+.logout-btn::after {
+  content: '→';
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.logout-btn:hover::after {
+  transform: translateX(3px);
+}
+
+/* Ajoutez une icône SVG pour plus de style (optionnel) */
+.logout-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+/* Style pour le router-outlet */
+router-outlet + * {
+  margin-top: 80px; /* Espace pour le header */
+  display: block;
+  min-height: calc(100vh - 80px);
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.logout-btn {
+  animation: fadeIn 0.5s ease-out 0.2s both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+
+  .logout-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logout-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  router-outlet + * {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+  }
+}

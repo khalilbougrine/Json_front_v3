@@ -13,16 +13,18 @@ export class AuthGuard extends KeycloakAuthGuard {
     super(router, keycloakAngular);
   }
 
-  public async isAccessAllowed(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Promise<boolean> {
-    if (!this.authenticated) {
+  public async isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    if (!await this.keycloakAngular.isLoggedIn()) {
       await this.keycloakAngular.login({
         redirectUri: window.location.origin + state.url
       });
       return false;
     }
-    return true;
+
+    const requiredRoles = route.data['roles'] as string[] || [];
+    if (requiredRoles.length === 0) return true;
+
+    const userRoles = this.keycloakAngular.getUserRoles();
+    return requiredRoles.some(role => userRoles.includes(role));
   }
 }

@@ -21,7 +21,12 @@ export function initializeKeycloak(keycloak: KeycloakService) {
         onLoad: 'login-required',
         checkLoginIframe: false
       },
-      enableBearerInterceptor: true
+      enableBearerInterceptor: true,
+      loadUserProfileAtStartUp: true // Ajoutez cette ligne
+    }).then(auth => {
+      if (!auth) {
+        keycloak.login();
+      }
     });
 }
 

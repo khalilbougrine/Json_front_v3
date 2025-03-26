@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import {KeycloakService} from 'keycloak-angular';
 
 @Component({
   selector: 'app-voiture-list',
@@ -15,6 +16,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./voiture-list.component.css']
 })
 export class VoitureListComponent implements OnInit {
+  isAdmin: boolean = false;
   allVoitures: Voiture[] = []; // Stocke toutes les voitures
   filteredVoitures: Voiture[] = []; // Voitures filtrées
   currentPageData: Voiture[] = []; // Données de la page actuelle
@@ -28,17 +30,22 @@ export class VoitureListComponent implements OnInit {
   // Colonnes à afficher dans le tableau
   displayedColumns: string[] = ['matricule', 'marque', 'modele', 'annee', 'kilometrage', 'actions'];
 
-  constructor(private voitureService: VoitureService, private fileService: FileService, public router: Router) {}
+  constructor(private keycloak : KeycloakService ,private voitureService: VoitureService, private fileService: FileService, public router: Router) {}
 
-  ngOnInit(): void {
-    this.loadAllVoitures(); // Charge toutes les données une seule fois
+  async ngOnInit() {
+    this.isAdmin = await this.keycloak.isUserInRole('admin');
+    this.loadAllVoitures();
   }
   navigateToAdd() {
-    this.router.navigate(['/voitures/ajouter']);
+    if (this.isAdmin) {
+      this.router.navigate(['/voitures/ajouter']);
+    }
   }
 
   navigateToEdit(id: number) {
-    this.router.navigate(['/voitures/modifier', id]);
+    if (this.isAdmin) {
+      this.router.navigate(['/modifier', id]);
+    }
   }
 
   // Charger toutes les voitures

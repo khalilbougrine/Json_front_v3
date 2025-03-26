@@ -8,12 +8,12 @@
       <option value="kilometrage">Kilométrage</option>
     </select>
 
-    <input type="text" [(ngModel)]="searchQuery"
-           (input)="onSearch()" placeholder="Rechercher...">
+    <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Rechercher...">
   </div>
 
+  <!-- Bouton Ajouter (visible seulement pour admin) -->
+  <button *ngIf="isAdmin" (click)="navigateToAdd()">Ajouter une voiture</button>
   <button (click)="downloadFile()" class="download-btn">📥 Télécharger JSON</button>
-  <button (click)="navigateToAdd()">Ajouter une voiture</button>
 
   <table mat-table [dataSource]="currentPageData">
     <!-- Colonne Matricule -->
@@ -50,8 +50,9 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let voiture">
-        <button (click)="navigateToEdit(voiture.id)">Modifier</button>
-        <button (click)="deleteVoiture(voiture.id)">Supprimer</button>
+        <!-- Boutons visibles seulement pour admin -->
+        <button *ngIf="isAdmin" (click)="navigateToEdit(voiture.id)">Modifier</button>
+        <button *ngIf="isAdmin" (click)="deleteVoiture(voiture.id)">Supprimer</button>
       </td>
     </ng-container>
 

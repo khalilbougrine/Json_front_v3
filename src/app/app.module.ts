@@ -22,7 +22,7 @@ export function initializeKeycloak(keycloak: KeycloakService) {
         checkLoginIframe: false
       },
       enableBearerInterceptor: true,
-      loadUserProfileAtStartUp: true // Ajoutez cette ligne
+      loadUserProfileAtStartUp: true
     }).then(auth => {
       if (!auth) {
         keycloak.login();
@@ -52,7 +52,7 @@ export function initializeKeycloak(keycloak: KeycloakService) {
       multi: true,
       deps: [KeycloakService]
     },
-    AuthGuard // Pas besoin de configuration supplémentaire
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

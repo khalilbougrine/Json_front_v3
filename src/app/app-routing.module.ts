@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { VoitureListComponent } from './modules/voiture/components/voiture-list/voiture-list.component';
 import { VoitureAddComponent } from './modules/voiture/components/voiture-add/voiture-add.component';
 import { VoitureEditComponent } from './modules/voiture/components/voiture-edit/voiture-edit.component';
-import { AuthGuard } from './auth.guard'; // Assurez-vous que le chemin est correct
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {

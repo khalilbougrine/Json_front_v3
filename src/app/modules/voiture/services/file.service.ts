@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class FileService {
-  private apiUrl = 'http://localhost:7070/browser/cars-json/success/CARS.json'; // URL de votre backend
+  private apiUrl = 'http://localhost:7070/browser/cars-json/success/CARS.json';
 
   constructor(private http: HttpClient) {}
 

@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "sonar": "sonar-scanner -Dproject.settings=sonar-project.js",
+    "test:ci": "ng test --watch=false --code-coverage",
+    "lint:ci": "ng lint --format=checkstyle > lint-report.xml"
   },
   "private": true,
   "dependencies": {
